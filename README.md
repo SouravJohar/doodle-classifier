@@ -5,6 +5,8 @@ Watch a neural network classify your fruit drawings
 Watch the video here : https://youtu.be/O8Gvkq8y-qs
 
 Google colab notebook : https://colab.research.google.com/drive/1pG7gbXyAq-8UL_Pj18FV6O-jU0MmYZze
+
+
 <img src="/samples/1.png" width="50%" />
 
 ## Requirements
