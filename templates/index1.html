@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Doodle Classifier</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+
+  <script>
+		if (typeof module === 'object') {
+			window.module = module;
+			module = undefined;
+		}
+	</script>
+  <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="../static/index.js"></script>
+	<script>
+		if (window.module) module = window.module;
+	</script>
+
+</head>
+<script>
+  function plot() {
+
+    var canvas = document.getElementById("canvas");
+    document.getElementById("chartContainer").style.display = "block";
+    var ctx = canvas.getContext("2d");
+
+    var image = new Image();
+    image.onload = function() {
+      ctx.drawImage(image, 0, 0);
+    };
+    image.src = "{{putback}}"
+    document.getElementById("sel1").value = "{{net}}"
+    var preds = {{preds}}
+    var classes = {{classes | safe}}
+    var chart = new CanvasJS.Chart("chartContainer", {
+      theme: "light2",
+      animationEnabled: true,
+      title: {
+        text: "Detected Fruits"
+      },
+      axisY : {
+        minimum: 0,
+        maximum: 100
+      },
+      data: [{
+        type: "column",
+
+        dataPoints: [{
+            y: preds[3] * 100,
+            label: classes[3]
+          },
+          {
+            y: preds[2] * 100,
+            label: classes[2]
+          },
+          {
+            y: preds[1] * 100,
+            label: classes[1]
+          },
+          {
+            y: preds[0] * 100,
+            label: classes[0]
+          },
+        ]
+      }]
+    });
+    chart.render();
+  }
+</script>
+
+<body>
+
+  <div class="container">
+    <div class="jumbotron">
+      <h1>Fruit Doodles</h1>
+      <p>Draw an apple, pineapple, banana or grape fruit and watch a Neural Network classify your hand-drawn fruit doodles. </p>
+    </div>
+    <form method='POST' onsubmit="return prepare()">
+      <input type="hidden" id="payload" name="payload" value="x">
+      <div class="form-group">
+        <label for="sel1" style="margin-left:7%">Neural Net:</label>
+        <br>
+        <select class="form-control btn btn-warning" name="net" id="sel1" style="margin-left:7%;width:14%">
+          <option>MLP</option>
+          <option>ConvNet</option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-success" style="margin-left:7%" id="predict">Predict</button>
+      <button type="button" class="btn btn-info" id="clearButton">Clear</button>
+      <br>
+      <br>
+      <canvas id="canvas" width="280" height="280" style="float:left;border:8px solid; border-radius: 10px; cursor: crosshair;"></canvas>
+      <div id="chartContainer" style="margin-left: 350px;height: 300px; display:none"></div>
+
+
+      {% if chart %}
+      <script>
+        plot()
+      </script>
+      {% endif %}
+      <br>
+    </form>
+    <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+
+    <script src="../static/index.js"></script>
+    <script type="text/javascript">
+      function prepare() {
+        var canvasObj = document.getElementById("canvas");
+        var img = canvasObj.toDataURL();
+        document.getElementById("payload").value = img;
+        return true;
+      }
+    </script>
+</body>
+</html>

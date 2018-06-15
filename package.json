@@ -1,0 +1,22 @@
+{
+  "name": "doodle-classifier",
+  "version": "1.0.0",
+  "description": "Use a neural network to classify hand-drawn fruits",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": "",
+  "keywords": [
+    "Electron",
+    "tensorflow",
+    "neural network",
+    "classify",
+    "doodle"
+  ],
+  "author": "SouravJohar",
+  "license": "CC0-1.0",
+  "devDependencies": {
+    "electron": "^1.8.4"
+  }
+}
