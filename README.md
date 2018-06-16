@@ -1,6 +1,7 @@
 # doodle-classifier
 
-Watch a neural network classify your fruit drawings
+Watch a neural network classify your fruit drawings.
+GUI was made using Electron.js paired up with a Python backend running a flask server.
 
 Watch the video here : https://youtu.be/O8Gvkq8y-qs
 
@@ -28,7 +29,7 @@ Dataset : https://github.com/googlecreativelab/quickdraw-dataset (get the numpy 
 $ python train.py
 ```
 
-After training, the link your saved model in `server.py` and then run the server
+After training, link your saved model in `server.py` and then run the server
 
 ```sh
 $ python server.py
