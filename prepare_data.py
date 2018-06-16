@@ -14,8 +14,8 @@ def load(dir, files, reshaped):
             new_f = []
             for i in range(len(f)):
                 x = np.reshape(f[i], (28, 28))
-                # x = np.expand_dims(x, axis=0)
-                # x = np.reshape(f[i], (28, 28, 1))
+                x = np.expand_dims(x, axis=0)
+                x = np.reshape(f[i], (28, 28, 1))
                 new_f.append(x)
             f = new_f
         data.append(f)
