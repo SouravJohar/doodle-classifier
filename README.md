@@ -22,6 +22,18 @@ Google colab notebook : https://colab.research.google.com/drive/1pG7gbXyAq-8UL_P
 * scipy
 * Flask
 
+
+Install electron (You'll need node.js)
+```sh
+$ npm install electron -g
+```
+
+Download and move into the project directory
+```
+$ git clone https://github.com/SouravJohar/doodle-classifier.git
+$ cd doodle-classifier 
+```
+
 Download the dataset inside a 'data/' directory.
 Dataset : https://github.com/googlecreativelab/quickdraw-dataset (get the numpy bitmaps)
 
@@ -37,5 +49,5 @@ $ python server.py
 After the server is up and running,
 
 ```sh
-$ npm start
+$ electron .
 ```
